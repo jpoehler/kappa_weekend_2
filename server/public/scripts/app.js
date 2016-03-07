@@ -3,34 +3,66 @@ $(document).ready(function(){
       type: "GET",
       url: "/data",
       success: function(data){
-        appendDom(data);
+
+        var kappa = [];
+
+
+        for (var i = 0; i < data.kappa.length; i++){
+        kappa.push(data.kappa[i]);
+        }
+        var i = 0;
+        var timer = 10000;
+
+
+  setInterval(function(){
+      $('.carousel').children().remove();
+      $('.carousel').append('<h5> My name is ' + data.kappa[i].name + '</h5>');
+      $('.carousel').append('<p> I am from ' + data.kappa[i].location + '</p>');
+      $('.carousel').append('<p> My spirit animal is: ' + data.kappa[i].spirit_animal + '</p>');
+      $('.carousel').append('<p> I am awesome!!! This is what my chohort has to say about me... "' + data.kappa[i].shoutout + '" </p>');
+      i++;
+      if(i>data.kappa.length -1){
+          i=0;
       }
-    });
-  });
-        $("#kappaCarousel").carousel();
-        $('.item').click(function(){
-          $('#kappaCarousel').carousel('cycle');
-        });
-        $('.left').click(function(){
-          $('#kappaCarousel').carousel('prev');
-        });
-        $('.right').click(function(){
-          $('#kappaCarousel').carousel('next');
-        });
+  }, timer);
+
+  $('.carousel').append('<h5> My name is ' + data.kappa[i].name + '</h5>');
+  $('.carousel').append('<p> I am from ' + data.kappa[i].location + '</p>');
+  $('.carousel').append('<p> My spirit animal is: ' + data.kappa[i].spirit_animal + '</p>');
+  $('.carousel').append('<p> I am awesome!!! This is what my chohort has to say about me... "' + data.kappa[i].shoutout + '" </p>');
 
 
-function appendDom(data){
-  var kappa = data.kappa;
+     //event listeners:
+         $('.buttons').on('click', '.prev', function(){
+             i--;
+             if(i == -1){
+                 i = data.kappa.length -1;
+             }
 
-  for (var i = 0; i < kappa.length; i++){
+             $('.carousel').children().remove();
+             $('.carousel').append('<h5> My name is ' + data.kappa[i].name + '</h5>');
+             $('.carousel').append('<p> I am from ' + data.kappa[i].location + '</p>');
+             $('.carousel').append('<p> My spirit animal is: ' + data.kappa[i].spirit_animal + '</p>');
+             $('.carousel').append('<p> I am awesome!!! This is what my chohort has to say about me... "' + data.kappa[i].shoutout + '" </p>');
 
-  $('#kappaCarousel').append('<div class="slide"></div>');
-  var $el = $('#kappaCarousel').children().last();
+                time = 10000;
+         });
 
-  $el.append('<p> My name is ' + kappa[i].name + '</p>');
-  $el.append('<p> I am from ' + kappa[i].location + '</p>');
-  $el.append('<p> My spirit animal is: ' + kappa[i].spirit_animal + '</p>');
-  $el.append('<p> I am awesome!!! This is what my chohort has to say about me... "' + kappa[i].shoutout + '" </p>');
+         $('.buttons').on('click', '.next', function(){
+             i++;
+             if(i>data.kappa.length-1){
+                 i=0;
+             }
+             $('.carousel').children().remove();
+             $('.carousel').append('<h5> My name is ' + data.kappa[i].name + '</h5>');
+             $('.carousel').append('<p> I am from ' + data.kappa[i].location + '</p>');
+             $('.carousel').append('<p> My spirit animal is: ' + data.kappa[i].spirit_animal + '</p>');
+             $('.carousel').append('<p> I am awesome!!! This is what my chohort has to say about me... "' + data.kappa[i].shoutout + '" </p>');
 
-  }
+                timer = 10000;
+         });
+
 }
+});
+
+});

@@ -1,1 +1,30 @@
+body{
+  font-family: Verdana, Geneva, sans-serif;
+}
 
+h1{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.buttons{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+.carousel{
+  width: 750px;
+  margin: 25px auto 25px auto;
+  border: 8px inset #007c8f;
+}
+h5{
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+p{
+  margin-left: 15px;
+  margin-right: 15px;
+}
