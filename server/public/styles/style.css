@@ -28,3 +28,8 @@ p{
   margin-left: 15px;
   margin-right: 15px;
 }
+.carousel-indicators{
+  position: relative;
+  margin: 0 auto;
+  border-radius: 50%;
+}
