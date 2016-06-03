@@ -1,9 +1,13 @@
+var transitionTime = 5000;
+
+var timer;
 var peopleData = [];
 var globalIndex = 0;
 var elementArray = [];
 
 $(document).ready(function () {
   init();
+  enable();
 });
 
 function init(){
@@ -19,27 +23,45 @@ function init(){
   });
 }
 
-//this button brings up the previous person
-    $('.buttons').on('click', '.prev', function(){
-        globalIndex--;
-        if(globalIndex < 0){
-          globalIndex = peopleData.length - 1;
-             }
+//Button event listeners
+function enable(){
+$('.buttons').on('click', '.prev', prevButton);
+$('.buttons').on('click', '.next', nextButton);
+timer = setInterval(interval, transitionTime);
+}
 
-        updateDom();
-        updateHighlight();
-});
+function disable(){
+  $('.buttons').on('click', '.prev', prevButton);
+  $('.buttons').on('click', '.next', nextButton);
+  clearInterval(timer);
+}
 
-//This brings up the next person
-      $('.buttons').on('click', '.next', function(){
-          globalIndex++;
-          if(globalIndex >= peopleData.length-1){
-              globalIndex=0;
-             }
+function interval(){
+  nextButton();
+}
 
-          updateDom();
-          updateHighlight();
-        });
+//This brings up the previous person in peopleData
+function prevButton(){
+  console.log('This button works');
+  globalIndex--;
+  if(globalIndex < 0){
+  globalIndex = peopleData.length - 1;
+}
+
+  updateDom();
+  updateHighlight();
+}
+
+//This brings up the next person in peopleData
+  function nextButton(){
+    globalIndex++;
+    if(globalIndex >= peopleData.length-1){
+    globalIndex=0;
+  }
+
+    updateDom();
+    updateHighlight();
+  }
 
 //This pushes data to the DOM
   function updateDom(){
